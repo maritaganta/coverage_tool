@@ -1,5 +1,8 @@
 import numpy as np
 from numpy import linalg as LA
+import time
+import cProfile
+
 
 # Constants
 deg = np.pi / 180  # converts degrees to radiant
@@ -564,4 +567,15 @@ def coverage_tool():
     return access_profile, covered_target, revisit_time_analytics, first_sat_pass_time, first_sat_pass_id
 
 
+# Grab Currrent Time Before Running the Code
+start = time.time()
+
 access_profile, covered_target, revisit_time_analytics, first_sat_pass_time, first_sat_pass_id = coverage_tool()
+
+# Grab Currrent Time After Running the Code
+end = time.time()
+# Subtract Start Time from The End Time
+total_time = end - start
+print("\n execution time: " + str(total_time) + " seconds")
+
+cProfile.run('coverage_tool()')
